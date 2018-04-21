@@ -1,3 +1,6 @@
+/* toplevel1.c - version 1 that implements Add(), CreaList(), and PrintList() methods
+ *               sans mechanization though
+ */
 #include	<stdio.h>
 #include	<stdlib.h>
 
