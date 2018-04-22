@@ -1,0 +1,17 @@
+void Add(int newVal)
+/*
+ * place a new process at end of list
+ */
+{
+	struct node *newNode = malloc(sizeof(struct node));   /* create a new node */
+	newNode->val = newVal;
+
+	if( End == NULL ){
+		Head = End = newNode;   /* the only node in list */
+	}
+	else{
+		End->next = newNode;  /* link the new node with the last node */
+		End = End->next;    /* tail now points to the last node */
+		End->next = Head;
+	}
+}
