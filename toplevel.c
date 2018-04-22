@@ -1,37 +1,70 @@
-/* toplevel.c - introduces the basic logic of creating and linking nodes in a list.
- *
- */
 #include	<stdio.h>
 #include	<stdlib.h>
 
+
 struct node{
-	int val;
-	struct node * next;
+	int 		val;
+	struct node 	*next;
 };
 
-int main()
+
+struct node *Head = NULL;	/* Global End ptr */
+struct node *Cur = NULL;
+struct node *End = NULL;	
+
+struct node *CreateList();	/* Function prototype */
+void Add(int newVal);		
+void PrintList();
+
+/*
+ *		MAIN Section
+ */
+int main(){
+	End = CreateList();
+	PrintList();
+}
+/*
+ *
+ */
+
+struct node *CreateList()
+/*
+ * creates a linked list. returns the End Ptr.
+ */
 {
-	struct node *head = NULL;	/* declare head & tail */
-	struct node *tail = NULL;
-	struct node *current = NULL;
+	Add(3);
+	Add(1);
+	Add(2);
+	Add(122);
+	return End;	
+}
+void Add(int newVal)
+/*
+ * place a new process at end of list
+ */
+{
+	struct node *newNode = malloc(sizeof(struct node));
+	newNode->val = newVal;
 
-	head = malloc(sizeof(struct node));	/* create first node & append to list */
-	head->val = 1;
-	tail = head;
-
-	tail->next = malloc(sizeof(struct node));	/*link 1st node with new node */
-	tail = tail->next;				/* update position of tail */
-	tail->val = 22;
-
-	tail->next = malloc(sizeof(struct node));
-	tail = tail->next;
-	tail->val = 3;
-	tail->next = NULL;				/* end of list	*/
-
-	current = head;
-	while( current != NULL)
-	{
-		printf("%i\n", current->val);
-		current = current->next;
+	if( End == NULL ){
+		Head = End = newNode;
 	}
+	else{
+		End->next = newNode;
+		End = End->next;
+		End->next = Head;
+	}
+}
+
+void PrintList()
+/*
+ * goes through every node in the list and prints data
+ */
+{
+	struct node *index = Head;
+	do{
+		printf("%i\n", index->val);
+		index = index->next;
+	}
+	while( index != Head);
 }
