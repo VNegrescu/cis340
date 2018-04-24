@@ -1,4 +1,4 @@
-/* toplevel.c - implements all methods except ScanList() and File I/O.
+/* toplevel.c - implements all methods except ScanList(), isEmpty(), and File I/O.
  *
  */
 #include	<stdio.h>
