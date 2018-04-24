@@ -1,3 +1,6 @@
+/* toplevel.c - implements all methods except ScanList() and File I/O.
+ *
+ */
 #include	<stdio.h>
 #include	<stdlib.h>
 
@@ -58,7 +61,7 @@ struct node *CreateList()
  * creates a linked list. returns the End Ptr.
  */
 {
-	Add(3);
+	Add(3);		/* add node at end of list */
 	Add(1);
 	Add(2);
 	return End;	
@@ -73,12 +76,12 @@ void Add(int newVal)
 	newNode->val = newVal;
 
 	if( End == NULL ){
-		Head = End = newNode;
+		Head = End = newNode;	/* only one node in list */
 	}
 	else{
-		End->next = newNode;
-		End = End->next;
-		End->next = Head;
+		End->next = newNode;	/* connect node to first node */
+		End = End->next;	/* update end ptr to end of list */
+		End->next = Head;	/* circular linked list */
 	}
 	size++;
 }
@@ -98,20 +101,16 @@ struct node *RemoveCurrent(struct node *Current)
  *   
  */
 {
-	/*
-	Head = Current->next;
-	End->next = Current->next;
-	*/
-	if(size == 0) return NULL;
+	if(size == 0) return NULL;	/* empty list */
 	else{
 		struct node *previous = Current;
 	
 		for(int i = 1; i < size; i++){
-			previous = previous->next;
+			previous = previous->next;	/* locate previous */
 		}
 
-		Current = previous->next;
-		previous->next = Current->next;
+		Current = previous->next;		
+		previous->next = Current->next;		/* remove current */
 		size--;
 		return Current;
 	}
