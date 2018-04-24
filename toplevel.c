@@ -38,19 +38,6 @@ int main(){
 		}
 		Cur = Cur->next;
 	}
-	/*
-	PrintList();
-	printf("\n");
-	
-	Head = Cur = End->next;
-	RemoveCurrent(Cur);
-	PrintList();
-	printf("\n");
-
-	Cur = Cur->next;
-	RemoveCurrent(Cur);
-	PrintList();
-	*/
 }
 /*
  *
