@@ -21,8 +21,8 @@ struct node *CreateList();	/* Function prototype */
 void Add(int newVal);
 struct node *ScanList(struct node *End);
 struct node *RemoveCurrent(struct node *Current);		
-void PrintList();
 bool isEmpty();
+void PrintList();
 
 /*
  *		MAIN Section
@@ -123,6 +123,17 @@ struct node *RemoveCurrent(struct node *Current)
 	}
 }
 
+bool isEmpty()
+/*
+ * returns true if the list is empty and false otherwise
+ */
+{
+	if ( size == 0 )
+		return true;
+	else
+		return false;
+}
+
 void PrintList()
 /*
  * goes through every node in the list and prints data
@@ -136,13 +147,3 @@ void PrintList()
 	while( index != Head);
 }
 
-bool isEmpty()
-/*
- * returns true if the list is empty and false otherwise
- */
-{
-	if ( size == 0 )
-		return true;
-	else
-		return false;
-}
