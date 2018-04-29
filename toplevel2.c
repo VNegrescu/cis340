@@ -5,32 +5,27 @@
 #define		true	1
 #define		false	0
 
-
-struct node{
-	int 		val;
-	struct node 	*next;
+struct node{			/* definition of struct node */
+	int		pid;	/* process ID */
+	int 		ptime;  /* Exection time */
+	struct node 	*next;  
 };
 
-
-struct node *Head = NULL;	/* Global End ptr */
-struct node *Cur = NULL;
-struct node *End = NULL;
-int size = 0;	
+int size = 0;			/* initialize empty list */
+struct node *Head = NULL;	/* always points to beginning of list */
+struct node *Cur = NULL;	
+struct node *End = NULL;	/* always points to end of list */
 
 struct node *CreateList();	/* Function prototype */
 void Add(int newVal);
-struct node *ScanList(struct node *End);
+struct node *ScanList(struct node *End);	/* needs revision */
 struct node *RemoveCurrent(struct node *Current);		
 bool isEmpty();
 void PrintList();
 
-/*
- *		MAIN Section
- */
 int main(){
 	End = CreateList();
 	Cur = End->next;
-      //for(int i = 0; i < 7; i++){
 	while ( isEmpty() != true ) {
 		PrintList();
 		printf("\n");
@@ -64,19 +59,28 @@ struct node *CreateList()
  * creates a linked list. returns the End Ptr.
  */
 {
+	while(1){
+		int id, t;
+		if( scanf("%d%d", &id, &t) == EOF )
+			break;
+		Add( id, t);
+	}
+	/*
 	Add(3);
 	Add(1);
 	Add(2);
+	*/
 	return End;	
 }
 
-void Add(int newVal)
+void Add(int newID, int newTime)
 /*
  * place a new process at end of list
  */
 {
 	struct node *newNode = malloc(sizeof(struct node));
-	newNode->val = newVal;
+	newNode->pid = newID;	
+	newNode->ptime = newTime;
 
 	if( End == NULL ){
 		Head = End = newNode;
